@@ -1,0 +1,91 @@
+public class Solution {
+    /**
+     * @param A: an integer array
+     * @return: nothing
+     */
+    public void sortIntegers2(int[] A) {
+        // write your code here
+    //     //merge sort
+    //     int[] tmp = new int[A.length];//the new sorted list will put in tmp;
+    //     mergeSortHelper(A,0,A.length-1,tmp);
+    // }
+    // private static void mergeSortHelper(int[] A, int left, int right, int[] tmp) {
+    //     if (left >=right) {//exit strategy
+    //         return;
+    //     }
+    //     int mid = left + (right-left)/2;
+    //     //split the list from mid and sorted separately
+    //     mergeSortHelper(A,left, mid, tmp);
+    //     mergeSortHelper(A,mid+1,right,tmp);
+    //     //merger together and sort
+    //     merge(A,left,right,tmp);
+    // }
+    // private static void merge(int[] A, int left, int right, int[] tmp) {
+    //     int mid = left +(right-left)/2;
+    //     int i = left;//i指向left，left会变
+    //     int j = mid+1;//j 指向mid
+    //     for (int k = 0 ; k<=right-left; k++) {//k为tmp的指针，k的size是left和right之间的距离
+    //         if(i<=mid && (j>right || A[i]< A[j]) ){
+    //             tmp[k] = A[i];
+    //             i++;
+    //         }else {
+    //             tmp[k] = A[j];
+    //             j++;
+    //         }
+    //     }
+    //     for(int k = 0; k<=right-left;k++){//把tmp里的数字再倒回A中；
+    //         A[left+k] = tmp [k];
+    //     }
+
+    //Quick sort
+    //exit strategy
+    // if(A == null) {
+    //     return;
+    // }
+    // quickSortHelper(A, 0, A.length-1);
+    // }
+
+    // public void quickSortHelper(int[] A, int left, int right) {
+    //     if(left >=right ) { //exit strategy
+    //         return;
+    //     }
+    //     int i = left;
+    //     int j = right;
+    //     int pivot = A[left+(right-left)/2];
+
+    //     while(i<=j) {
+    //     //iA[i]<=pivot
+    //     while(A[i]< pivot) {
+    //         i++;
+    //     }
+    //     //由于之前i已经移动过，仍需要判断i有没有超过j
+    //     //i没有超过j,A[j]>=pivot
+    //     while(i<=j && A[j]> pivot) {
+    //         j--;
+    //     }
+    //     //由于之前i,j已经移动过，仍需要判断i有没有超过j
+    //     //A[i]<=pivot || A[j]>=pivot，互换位置
+    //     if(i<=j) {
+    //     int temp = A[i];
+    //     A[i] = A[j];
+    //     A[j]= temp;
+    //     //i,j指针移动
+    //     i++;
+    //     j--;
+    //     }
+    //     }
+    //     //i,j 扫过的部分都符合条件 左边<pivot, 右边>pivot partition过程
+    //     quickSortHelper(A,left, j);
+    //     quickSortHelper(A,i, right);
+    // }
+
+    //heap sort
+    Queue<Integer> q = new PriorityQueue<>();
+    for (int i = 0;i <A.length;i++) {//把A中的数据传到q中，q实现min heap
+        q.offer(A[i]);
+    }
+    for (int i= 0 ; i<A.length;i++){//把q的排好顺序的元素导回A中
+        A[i]=q.poll();
+    }
+}
+}

@@ -1,0 +1,70 @@
+/**
+ * Definition of Interval:
+ * public class Interval {
+ *     int start, end;
+ *     Interval(int start, int end) {
+ *         this.start = start;
+ *         this.end = end;
+ *     }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param intervals: interval list.
+     * @return: A new interval list.
+     */
+
+    public List<Interval> merge(List<Interval> intervals) {
+        Comparator<Interval> c = new Comparator<Interval>() {//create the comparator method
+        //不需要单独定义l1,l2，comparator API自己已经定义好
+            public int compare(Interval l1, Interval l2){
+                return l1.start - l2.start;//ascending
+                //start, end已经在定义Interval时定义好了
+            }
+        };
+        Collections.sort(intervals,c);//sort the interval
+        int cur = 0;
+        while(cur < intervals.size()-1) {//cur walk to the second last interval
+
+            Interval l1 = intervals.get(cur);
+            Interval l2 = intervals.get(cur+1);
+        //需要定义l1,l2的位置，后面才可以进行overlap已经remove的操作
+        if(!overlapping(l1,l2)){//non overlapping condition
+            cur++;
+            continue;
+        }
+        Interval m = merge(l1,l2);
+        intervals.remove(l1);
+        intervals.remove(l2);
+        intervals.add(cur,m);
+        }
+        return intervals;
+    }
+
+
+    //check l1, l2 overlap
+    private boolean overlapping(Interval l1, Interval l2 ) {
+       return l2.start <= l1.end;
+    }
+
+
+
+    //merge the overlap intervals
+    private Interval merge(Interval l1, Interval l2 ) {
+        //Interval res = new Interval(int a, int b);
+        if(l1.end <=l2.end) {
+           Interval res = new Interval(l1.start,l2.end);
+           return res;
+        }
+        else if (l1.end > l2.end) {
+            Interval res = new Interval(l1.start, l1.end);
+            return res;
+        }
+        // int start = Math.min(l1.start, l2.start); //another solution
+        // int end = Math.max(l1.end,l2.end);
+        // Interval res = new Interval(start, end);
+        //return res;
+        return null;
+    }
+}
