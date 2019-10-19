@@ -1,0 +1,39 @@
+public class Solution {
+    /**
+     * @param nums: A list of integer which is 0, 1 or 2
+     * @return: nothing
+     */
+    public void sortColors(int[] nums) {
+        // write your code here
+        //标记开始在第一位，最后一位，循环数组，<1的与第一位交换，第一位标记后移，>1的与最后一位交换，i标记不变，在判断一次后面换过来的数
+
+        if (nums == null || nums.length == 1) { // extrem condition
+            return;
+        }
+        int left = 0; //第一位标志点
+        int right = nums.length - 1; //最后位标志点；
+        int i = 0 ;//扫描数组的指针；
+        while(i <= right) {//指针i最多走到right， 因为right的右边都是已经交换好的2，不需要再判断
+            if(nums[i] == 0) {
+                swap(nums,left,i);
+                i++;//i移动下一位，因为left指针也指向这一位，之后会被替换掉，不需要做判断148-
+                left ++;
+                continue;//如果每一次只执行一种if情况，用continue来跳出
+            }
+            if(nums[i] == 1){
+                i++;
+                continue;//如果每一次只执行一种if情况，用continue来跳出
+            }
+            if (nums[i] == 2) {
+                swap(nums,right,i);
+                //i++;//i指针不移动，再下一轮在判断一次
+                right --;
+            }
+        }
+    }
+    public void swap(int[] nums, int j, int i) {
+        int temp = nums[j];
+        nums[j] = nums[i];
+        nums[i] = temp;
+    }
+}

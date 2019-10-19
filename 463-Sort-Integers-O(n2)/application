@@ -1,0 +1,48 @@
+public class Solution {
+    /**
+     * @param A: an integer array
+     * @return: nothing
+     */
+    public void sortIntegers(int[] A) {
+        //extreme condition
+    if(A == null || A.length <=1 ) {
+        return;
+    }
+
+   // selection
+    // for (int i = 0 ; i< A.length -1 ;i++ ){
+    //     for(int j = i+1; j<A.length;j++){
+    //         if(A[i]>A[j]){// swith 交换与A[i],A[j]顺序无关
+    //             // int temp = A[i];
+    //             // A[i] = A[j];
+    //             // A[j] = temp;
+    //             int temp = A[j];
+    //             A[j] = A[i];
+    //             A[i] = temp;
+    //         }
+    //      }
+    //     }
+    // bubble
+    // for (int i =0; i<A.length-1;i++) {//外循环，用来排除已经sort好的最后末位数，极限情况为走到第二位数
+    // for(int j =0; j<A.length-1-i;j++){//临近的两个数对比大小
+    //     if (A[j] > A [j+1]) {
+    //         int temp = A[j];
+    //         A[j] = A[j+1];
+    //         A[j+1] = temp;
+    //     }
+    //   }
+    // }
+    //insert
+    for (int i =1; i<A.length;i++) {//外循环，从第二位开始用来循环key
+    int key = A[i];
+    int j = i - 1;
+    while(j>=0 && key < A[j]) {//key 不能移动，要作为标的
+        int temp = A[j];//swap临近的两个数
+        A[j] = A[j+1];
+         A[j+1] = temp;
+        j--;
+    }
+
+    }
+    }
+}

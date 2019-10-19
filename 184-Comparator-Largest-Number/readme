@@ -1,0 +1,3 @@
+https://www.lintcode.com/problem/largest-number/description?_from=ladder&&fromId=71
+be careful about change to string
+In comparator function, can't use string to return

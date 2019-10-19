@@ -1,0 +1,61 @@
+/**
+ * Definition of TreeNode:
+ * public class TreeNode {
+ *     public int val;
+ *     public TreeNode left, right;
+ *     public TreeNode(int val) {
+ *         this.val = val;
+ *         this.left = this.right = null;
+ *     }
+ * }
+ */
+
+
+public class Solution {
+    /*
+     * @param root: The root of the binary search tree.
+     * @param node: insert this node into the binary search tree
+     * @return: The root of the new binary search tree.
+     */
+    public TreeNode insertNode(TreeNode root, TreeNode node) {
+       if (root == null ){
+           return node;
+       }
+       TreeNode cur = root;//create a cur, start from root
+       while(true) {
+           if (cur.val > node.val){//on the left
+             if (cur.left == null){
+               cur.left = node;
+               break;// jump out of while
+           }
+            cur = cur.left;
+            continue;//find the next null left
+          }
+        //on the right; cur.val < node.val
+          if (cur.right == null){
+               cur.right = node;
+               break;
+           }
+           cur = cur.right;//find the next null right
+        }
+        return root;
+    }
+
+    // public TreeNode insertNode(/*precondition*/TreeNode root, TreeNode node) {
+    //     // exit strategy
+    //     if (root == null) {
+    //         root = node;
+    //         return root;
+    //     }
+
+    //     // make delta
+    //     if (root.val > node.val){
+    //         root.left = insertNode(root.left/*delta1*/, node);
+    //     } else {
+    //         root.right = insertNode(root.right/*delta2*/, node);
+    //     }
+    //     return root;
+    // }
+
+
+}

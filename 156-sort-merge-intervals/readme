@@ -1,0 +1,4 @@
+https://www.lintcode.com/problem/merge-intervals/description?_from=ladder&&fromId=71
+1. find out the overlap intervals
+2. create the new intervals based on the overlap
+3. Interval is not a class, it need to define

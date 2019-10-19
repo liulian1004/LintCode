@@ -1,0 +1,49 @@
+public class Solution {
+    /**
+     * @param nums: A list of non negative integers
+     * @return: A string
+     */
+    public String largestNumber(int[] nums) {
+        // write your code here
+    StringBuilder res = new StringBuilder();
+    Queue<Integer> q = new PriorityQueue<>(nums.length, sort);
+        for (int i : nums) {
+            q.offer(i);//返回nums中iposition的值
+        }
+        while( !q.isEmpty()) {//poll出的数append到res
+            res.append(q.poll());
+        }
+        if(res.charAt(0) == '0' ){
+            return "0";
+        } else {
+            return res.toString();
+        }
+
+    }
+    Comparator<Integer> sort = new Comparator<Integer>() {
+         public int compare(Integer a, Integer b){//给 6 和65情况使用
+            StringBuilder s1= new StringBuilder();
+            StringBuilder s2 = new StringBuilder();
+            s1.append(a).append(b);
+            s2.append(b).append(a);
+            return compareString(s2.toString(), s1.toString()) ;
+            // return s2- s1; 不能直接用，因为s2,s1因为string，只用int char可以直接用
+            //需要另写
+        }
+    };
+
+
+    public int compareString(String s2, String s1) {// s1 = 656, s2 = 665, s1.lenght == s2.length
+        for (int i = 0; i <s1.length(); i++){
+            char c1 = s1.charAt(i);
+            char c2 = s2.charAt(i);
+            if (c2 > c1) {
+                return 1;
+            }
+            if(c2<c1) {
+                return -1;
+            }
+        }
+        return 0;
+    }
+}

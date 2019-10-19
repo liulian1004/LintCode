@@ -1,0 +1,132 @@
+/**
+ * Definition for ListNode
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+
+public class Solution {
+    /**
+     * @param head: The head of linked list.
+     * @return: You should return the head of the sorted linked list, using constant space complexity.
+     */
+    private ListNode findMedian(ListNode head) {// find the median point
+        ListNode slow = head;
+        ListNode fast = head.next;
+        while (fast !=null && fast.next != null){
+            slow = slow.next;
+            fast = fast.next.next;
+        }
+        return slow;
+    }
+
+    //merge method
+    public ListNode sortList(ListNode head) {
+    if(head == null || head.next == null) {
+        return head;
+    }
+    ListNode mid = findMedian(head);//found the mid point
+
+    ListNode right = sortList(mid.next);// recursion left and right
+    mid.next = null;
+    ListNode left = sortList(head);
+
+    return merge(left,right);//merge
+
+    }
+
+     private ListNode merge(ListNode head1, ListNode head2) { // merge and sort
+        ListNode dummy = new ListNode(-1);
+        ListNode head = dummy;
+        ListNode cur1 = head1;
+        ListNode cur2 = head2;
+        while(cur1 != null && cur2 != null){
+            if(cur1.val <= cur2.val){
+                head.next = cur1;
+                cur1= cur1.next;
+                //  head1.next = null;
+                //head1 = head1.next;
+            } else {
+                head.next = cur2;
+                cur2= cur2.next;
+                // head2.next = null;
+                //head2 = head2.next;
+            }
+            head= head.next;
+        }
+        if(cur1 == null){
+                head.next = cur2;
+            } else{
+                head.next = cur1;
+            }
+        return dummy.next;
+    }
+
+    //quicksort
+    // private ListNode contact (ListNode left, ListNode mid, ListNode right) {
+    //     ListNode dummy = new ListNode(-1);
+    //     ListNode tail = dummy;
+    //     tail.next = left;
+    //     tail = getTail(tail);//move to the end of left listNode
+    //     tail.next = mid;// contact to mid;
+    //     tail = getTail(tail);// move to the end of mid listNode;
+    //     tail.next = right;// contact to right;
+    //     tail = getTail(tail);
+    //     return dummy.next;
+    // }
+
+
+    // private ListNode getTail(ListNode head) {
+    //     if(head == null ){// extreme condition
+    //         return null;
+    //     }
+    //     ListNode tail = head;
+    //      while(tail.next != null) {
+    //          tail = tail.next;
+    //      }
+    //      return tail;
+    // }
+
+    // public ListNode sortList(ListNode head) {
+    //  if(head == null || head.next == null) { //exit condition
+    //     return head;
+    // }
+    // ListNode mid = findMedian(head); // create left, right, mid ListNode
+    // ListNode leftDummy = new ListNode (-1);
+    // ListNode leftHead = leftDummy;
+    // ListNode rightDummy = new ListNode (-1);
+    // ListNode rightHead = rightDummy;
+    // ListNode midDummy = new ListNode (-1);
+    // ListNode midHead = midDummy;
+    // while(head != null) {
+    //      if(head.val < mid.val){ // compare and put elements on different ListNode
+    //          leftHead.next = head;
+    //          leftHead = leftHead.next;
+    //      } else if (head.val == mid.val) {
+    //          midHead.next = head;
+    //          midHead = midHead.next;
+    //      } else{
+    //          rightHead.next = head;
+    //          rightHead = rightHead.next;
+    //      }
+
+    //     head = head.next;
+    // }
+    // leftHead.next = null;// create the end of three ListNode
+    // rightHead.next = null;
+    // midHead.next = null;
+
+    // ListNode left = sortList(leftDummy.next);// recursion
+    // ListNode right = sortList(rightDummy.next);
+
+    // ListNode res = contact(left, midDummy.next, right);
+    // return res;
+
+  //}
+
+}
