@@ -1,0 +1,38 @@
+public class Solution {
+    /**
+     * @param n: An integer
+     * @param nums: An array
+     * @return: the Kth largest element
+     */
+    public int kthLargestElement(int n, int[] nums) {
+        // write your code here
+       return quickSelect(nums, 0, nums.length-1, n);
+    }
+    private int quickSelect(int[] nums, int left, int right, int n) {//从大到小排
+        int p = nums[left+(right-left)/2];
+        int i = left;
+        int j = right;
+        while (i<=j){
+            while(i<=j && nums[i]>p){
+                i++;
+            }
+            while(i<=j && nums[j] <p){
+                j--;
+            }
+            if(i<=j) {
+            int temp = nums[i];
+            nums[i]=nums[j];
+            nums[j]= temp;
+            i++;
+            j--;
+            }
+        }
+        if(left+ n -1 <= j) {//i 和 j 之间没有间隔
+            return quickSelect(nums, left, j, n);
+        }
+        if(left+n -1>=i) {
+            return quickSelect(nums, i, right, n-(i-left));
+        }
+        return nums[j+1];//i 和 j之间隔一个数p的时候
+    }
+}
