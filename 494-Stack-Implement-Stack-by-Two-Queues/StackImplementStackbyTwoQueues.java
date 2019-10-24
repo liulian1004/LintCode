@@ -1,60 +1,47 @@
 public class Stack {
-    Queue<Integer> que1 = new LinkedList<>();
-    Queue<Integer> que2 = new LinkedList<>();
-
     /*
      * @param x: An integer
      * @return: nothing
      */
+    Queue<Integer> q1 = new LinkedList<>();
+    Queue<Integer> q2 = new LinkedList<>();
     public void push(int x) {
         // write your code here
-        que1.offer(x);
+        q1.offer(x);
     }
-   public void moveItems () {
-       while (que1.size() > 1) {
-        que2.offer (que1.poll());
-        }
-   }
 
-   public void swapQueue() {
-       Queue<Integer> tmp = que1;
-       que1=que2;
-       que2 = tmp;
-   }
     /*
      * @return: nothing
      */
     public void pop() {
-        //write your code here
-        if (que1.isEmpty()) {
-            return ;
+        // write your code here
+        while (q1.size() >1) {
+            q2.offer(q1.poll());
         }
-        if(que1.size() == 1 ){
-            que1.poll();
-            return;
+        q1.poll();
+        while(!q2.isEmpty()){
+            q1.offer(q2.poll());
         }
-        moveItems();
-        que1.poll();
-        swapQueue();
+
     }
 
     /*
      * @return: An integer
      */
-    public Integer top() {
-        //write your code here
-        if (que1.isEmpty()) {
-            return null;
+    public int top() {
+        // write your code here
+        if(q1.isEmpty()){
+            return 0;
         }
-        if(que1.size() == 1 ){
-            return que1.peek();
+      while (q1.size() >1) {
+            q2.offer(q1.poll());
         }
-        moveItems();
-        int v = que1.poll();
-        swapQueue ();
-        que1.offer(v);
-        return v;
-
+        int res = q1.poll();//poll出最后的数字
+        while(!q2.isEmpty()){
+            q1.offer(q2.poll());
+        }
+        q1.offer(res);//加入最后的数字
+        return res;
     }
 
     /*
@@ -62,6 +49,6 @@ public class Stack {
      */
     public boolean isEmpty() {
         // write your code here
-        return que1.isEmpty();
+        return (q1.isEmpty());
     }
 }

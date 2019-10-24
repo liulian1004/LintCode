@@ -8,7 +8,11 @@
  *         this.left = this.right = null;
  *     }
  * }
- */
+ //          1
+ //        /  \
+ //       2    3
+ //     /  \
+ //    4    5
 
 public class Solution {
     /**
@@ -18,19 +22,19 @@ public class Solution {
 
     public List<String> binaryTreePaths(TreeNode root) {
         // write your code here
-    List<String> paths= new ArrayList<>();
+    List<String> paths= new ArrayList<>();//空的list
     if(root == null) {
         return paths;
        }
     List<String> leftPaths= binaryTreePaths(root.left); //最后一轮 ["2->4","2->5"]
-    List<String> rightPaths= binaryTreePaths(root.right);//最后一轮 ["3"]
-    for(String p: leftPaths){
+    List<String> rightPaths= binaryTreePaths(root.right);//最后一轮 ["3"]////exit退出后，程序往下执行
+    for(String p: leftPaths){//如果leftpaths是空的list，不执行这一段
         paths.add(root.val + "->" + p);//循环,给leftpath的每个元素单独加“root.vol + -> " 变成['1 ->2 ->4','1->2->5']
     }
     for(String p: rightPaths){
         paths.add(root.val + "->" + p);
     }
-    if (paths.size() == 0) {
+    if (paths.size() == 0) {//只有一个节点的情况下
         paths.add(""+root.val);// “”=>String ; String+任何类型=Stringval转string
     }
     return paths;

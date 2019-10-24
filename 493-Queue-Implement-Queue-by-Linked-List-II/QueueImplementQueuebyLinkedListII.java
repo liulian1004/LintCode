@@ -1,12 +1,8 @@
-public class Dequeue {
+public class Dequeue {//在一开始定义全局变量
     LN tail;
     LN head;
 
-    public Dequeue() {
-        // do intialization if necessary
-        //previous = next = null;
-        //this.head = head;
-        //this.tail = tail;
+    public Dequeue() {//初始化全局变量
         tail= head = null;
     }
    private static class LN {//定义初始化双向链表
@@ -25,13 +21,13 @@ public class Dequeue {
     public void push_front(int item) {
         // write your code here
         LN n = new LN(item);
-        if (head == null) {//head 还么有和 n 连接在一起
-            head=tail= n;
+        if (head == null) {// 空linkedlist
+            head=tail= n;//双指针有head,和tail，head，tail的状态都需要更新
             return;
         }
         head.previous = n; //建立双向指针
         n.next = head;
-        head = n;
+        head = n; //head指针指向n；
     }
 
     /*
@@ -41,7 +37,7 @@ public class Dequeue {
     public void push_back(int item) {
         // write your code here
         LN n = new LN(item);
-        if (tail == null) {//tail 还么有和 n 连接在一起
+        if (tail == null) {//空linkedlist
             head=tail = n;
             return;
         }
@@ -53,20 +49,18 @@ public class Dequeue {
     /*
      * @return: An integer
      */
-    public Integer pop_front() {//需要考虑head走到空，tail也需要指向空
+    public Integer pop_front() {
         // write your code here
         LN tmp = head;
-        if(head == null) {
+        if(head == null) {//空linkedlist
             return null;
         }
-        if( head== tail) {
+        if( head== tail) {//一个元素
             head=tail=null;
             return tmp.val;
         }
-        head = head.next;
-        if (head == null) {
-            tail = null;
-        }
+        head = head.next;//两个以上元素
+        head.previous = null;//注意head之前位null
         return tmp.val;
 
     }
@@ -76,28 +70,98 @@ public class Dequeue {
      */
     public Integer pop_back() {//需要考虑null, 1位，2位
         // write your code here
-        if(tail == null) {
+        if(tail == null) {//空linkedlist
             return null;
         }
-        // ListNode cur = head;//单指针执行
-        // if( head == tail){
-        //     head = tail = null;
-        //     return cur.val;
-        // }
-        // while (cur.next != tail){
-        //   cur = cur.next;
-        // }
-        // ListNode tmp = tail;
-        // tail= cur;
-        // tail.next = null;
 
         // return tmp.val;
         LN tmp = tail;//双指针执行
-        if( head== tail) {
+        if( head== tail) {//一个元素
             head=tail=null;
             return tmp.val;
         }
-        tail = tail.previous;
+        tail = tail.previous;//两个以上元素
+        tail.next = null;//注意tail之后是null
         return tmp.val;
+    }
+}
+
+// one point linked List
+public class Dequeue {
+    ListNode dummy;
+
+    public Dequeue() {
+        // do intialization if necessary
+        dummy = new ListNode(-1);
+    }
+
+    static public class ListNode {
+      int val;
+      ListNode next;
+      ListNode(int x) {
+          val = x;
+          next = null;
+      }
+    }
+
+    public void push_front(int item) {
+        // write your code here
+    ListNode head = dummy.next;
+    ListNode n = new ListNode(item) ;// insert new item
+    dummy.next = n;// dummy == null 时也适用于这种情况
+    n.next = head;
+
+    }
+
+    /*
+     * @param item: An integer
+     * @return: nothing
+     */
+    public void push_back(int item) {
+
+        ListNode n = new ListNode(item);
+        ListNode cur = dummy;
+        while (cur.next != null) {
+            cur = cur.next;
+        }
+        // cur!=null && cur.next==null
+        cur.next = n;
+    }
+
+    /*
+     * @return: An integer
+     */
+    public int pop_front() {
+
+        // dummy.next ?
+        if (dummy.next == null) {
+            return 0;
+        }
+        // dummy.next != null
+        int res = dummy.next.val;
+        dummy.next = dummy.next.next;
+        return res;
+    }
+
+    /*
+     * @return: An integer
+     */
+    public int pop_back() {
+
+        // dummy.next?
+        if (dummy.next == null) {
+            return 0;
+        }
+        // dummy.next != null
+        ListNode l1 = dummy;
+        ListNode l2 = l1.next;
+        while (l2.next!=null) {
+            l1=l1.next;
+            l2=l2.next;
+        }
+        // l2!=null && l2.next==null
+        int res = l2.val;
+        l1.next = null;
+        return res;
     }
 }

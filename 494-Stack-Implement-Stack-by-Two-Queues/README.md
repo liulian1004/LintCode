@@ -1,4 +1,3 @@
 https://www.lintcode.com/problem/implement-stack-by-two-queues/description
-moveItems
-swapQueue
-在top完之后，swapqueue，记得把原来的top值返回到que1
+first in last out/ push, pop, peak
+two queue, one is full of elememts, another is empty;

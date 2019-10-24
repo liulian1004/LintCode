@@ -1,41 +1,25 @@
 public class Solution {
     /**
-     *
      * @param s: A string
      * @return: Whether the string is a valid palindrome
      */
     public boolean isPalindrome(String s) {
-        if (s == null || s.length() == 0) {
-            return true;
-        }
-
-        int front = 0;
-        int end = s.length() - 1;
-        while (front < end) {
-            while (front < s.length() && !isvalid(s.charAt(front))) { // nead to check range of a/b
-                front++;
-            }
-
-            if (front == s.length()) { // for empty string “.,,,”
-                return true;
-            }
-
-            while (end >= 0 && ! isvalid(s.charAt(end))) { // same here, need to check border of a,b
-                end--;
-            }
-
-            if (Character.toLowerCase(s.charAt(front)) != Character.toLowerCase(s.charAt(end))) {
-                break;
-            } else {
-                front++;
-                end--;
-            }
-        }
-
-        return end <= front;
+        // write your code here
+    String newS = s.replaceAll("[^a-zA-Z0-9]", "");
+    if(newS == null || newS.length() == 0){
+        return true;
     }
-
-    private boolean isvalid (char c) {
-        return Character.isLetter(c) || Character.isDigit(c);
+     newS = newS.toLowerCase();
+    int i = 0;
+    int j = newS.length()-1;
+    while(i<j){
+        if(newS.charAt(i) == newS.charAt(j)){
+            i++;
+            j--;
+        }else{
+            break;//跳出程序
+        }
+    }
+    return i>=j; //如果指针都走到相应地点，要么i和j重合，要么i超过j一位
     }
 }

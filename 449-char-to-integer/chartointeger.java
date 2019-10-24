@@ -5,8 +5,7 @@ public class Solution {
      */
     public int charToInteger(char character) {
         // write your code here
-        int result = 0;
-        result = (int) character;
-        return result;
+        return = (int) character;
+
     }
 }

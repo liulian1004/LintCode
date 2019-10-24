@@ -19,7 +19,7 @@ public class Solution {
     public boolean isIdentical(TreeNode a, TreeNode b) {
         // write your code here
         if (a == null && b == null){
-            return true;
+            return true;// return到上一次recursion函数
         } else if (a == null || b == null){
             return false;
         }

@@ -16,27 +16,9 @@ public class Solution {
      * @param level: the depth of the target level
      * @return: An integer
      */
-    // int i = 1, j=1;
-    // public int levelSum(TreeNode root, int level) {
-    //     // write your code here
-    //     if (root == null) {
-    //         return 0;
-    //     }
-    //     if (i > level || j > level) {
-    //         return 0;
-    //     }
-    //     levelSum(root.left, i++);
-    //     int a = root.left.val;
-    //     levelSum(root.right, j++);
-    //     int b = root.right.val;
-    //     if ( Math.max (i, j) < level  ) {
-    //         return 0;
-    //     }
-    //     return a+b;
-    // }
-    int sum = 0;
+    int sum = 0;//如果所有class需要调用，需要在一开始声明
     public int levelSum(TreeNode root, int level) {
-        helper (root, 1, level);
+        helper (root, 1, level);//depth是从1开始
         return sum;
     }
     private void helper (TreeNode root, int depth, int level) {
@@ -47,7 +29,7 @@ public class Solution {
             sum += root.val;
             return;
         }
-        helper(root.left, depth+1, level);
+        helper(root.left, depth+1, level);//不要忘记depth+1
         helper(root.right, depth+1, level);
     }
 }

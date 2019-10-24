@@ -21,16 +21,16 @@ public class Solution {
                 product = carry + num3[i + j + 1] +
                     Character.getNumericValue(num1.charAt(i)) *
                     Character.getNumericValue(num2.charAt(j));
-                num3[i + j + 1] = product % 10;
+                num3[i + j + 1] = product % 10;//num3[i+j+1]只从后一位小数位开始往前循环
                 carry = product / 10;
             }
-            num3[i + j + 1] = carry;
+            num3[i + j + 1] = carry;//carry的值传给下一位数，这里的num3[i+j+1]比之前的num3[i+j+1]前进一位数
         }
 
         StringBuilder sb = new StringBuilder();
         i = 0;
 
-        while (i < len3 - 1 && num3[i] == 0) {
+        while (i < len3 - 1 && num3[i] == 0) {// 第一位为0的情况下，i后移
             i++;
         }
 
