@@ -3,10 +3,13 @@ public class ArrayListManager {
      * @param n: You should generate an array list of n elements.
      * @return: The array list your just created.
      */
+
+    //ArrayList<Integer> list = new ArrayList<>();// static 的函数只能调用static里面的变量，所以这里声明的函数在下面的staic里面用不了，需要在static里面单独调用
+
     public static ArrayList<Integer> create(int n) {
         // Write your code here
-        ArrayList<Integer> list = new ArrayList(n);
-        for ( int i =0 ; i < n ; i++) {
+        ArrayList<Integer> list = new ArrayList<>();
+        for(int i = 0; i< n; i++){
             list.add(i);
         }
         return list;
@@ -18,8 +21,11 @@ public class ArrayListManager {
      */
     public static ArrayList<Integer> clone(ArrayList<Integer> list) {
         // Write your code here
-        ArrayList<Integer> newList = (ArrayList<Integer>)list.clone();
-        return newList;
+        ArrayList<Integer> n1 = new ArrayList<>();
+        for (int i = 0; i<list.size(); i++){
+            n1.add(list.get(i));
+        }
+        return n1;
     }
 
     /**
@@ -29,8 +35,7 @@ public class ArrayListManager {
      */
     public static int get(ArrayList<Integer> list, int k) {
         // Write your code here
-        int a = list.get(k);
-        return a;
+        return list.get(k);
     }
 
     /**
@@ -40,7 +45,8 @@ public class ArrayListManager {
      */
     public static void set(ArrayList<Integer> list, int k, int val) {
         // write your code here
-         list.set(k,val);
+        list.set(k,val);
+
     }
 
     /**
@@ -59,7 +65,18 @@ public class ArrayListManager {
      */
     public static int indexOf(ArrayList<Integer> list, int val) {
         // Write your code here
-        int equalsToVal = list.indexOf(val);
-        return equalsToVal;
+        int i = 0;
+        while(i != list.size()){
+            if(list.get(i) == val) {
+                break;
+            }else{
+                i++;
+            }
+        }
+        if(i< list.size()) {
+            return i;
+        } else{
+            return -1;
+        }
     }
 }

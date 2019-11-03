@@ -22,7 +22,7 @@ public class Solution {
     ListNode cur = dummy; // create dummy, cur points to 1st dummy
     ListNode cur1 = l1;
     ListNode cur2 = l2;
-    while (cur1 != null && cur2 != null){ // l1, l2 don't move to the end;
+    while (cur1 != null && cur2 != null){ //注意是判断cur1,cur2
         // cur1!=null
         // cur2!=null
         // cur1.val <= cur2.val
@@ -43,7 +43,7 @@ public class Solution {
     // cur1 == null
     // cur2 == null
     // cur1 == null && cur2 == null
-    if (cur1 != null){
+    if (cur1 != null){//注意是判断cur1,cur2
         cur.next = cur1;
     }
     if (cur2 != null){

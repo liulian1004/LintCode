@@ -1,4 +1,4 @@
 https://www.lintcode.com/problem/sort-colors/description
 three point： left, right, i
 when swap, left ++, i++
-when swap: right++, i++
+when swap: right--, i stay at the same location and judge again

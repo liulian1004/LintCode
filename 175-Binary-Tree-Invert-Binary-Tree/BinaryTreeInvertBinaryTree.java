@@ -28,7 +28,7 @@ public class Solution {
     // invertBinaryTree(root.right);//需要把左右子数都走一遍
     // }
 
-    // iteration (non-recursion)
+    // iteration (non-recursion) 深度遍历 用stack
     public void invertBinaryTree(TreeNode root) {//对单独的node先压后弹，弹出的点进行左右子数switch
         if (root == null) {
             return;
@@ -37,7 +37,7 @@ public class Solution {
         stack.push(root);
         while(!stack.empty()) {
             TreeNode node = stack.pop();
-            visit(node);
+            visit(node); //switch
             if(node.left!=null) {
                 stack.push(node.left);
             }

@@ -1,4 +1,5 @@
 https://www.lintcode.com/problem/insert-node-in-a-binary-search-tree/description
+bst left<root<right
 two solution
 recursion
-iteration
+iteration（while)

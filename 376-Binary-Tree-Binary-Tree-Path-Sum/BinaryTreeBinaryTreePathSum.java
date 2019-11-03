@@ -32,7 +32,7 @@ public class Solution {
     }
 
     private void traverse(TreeNode root, int sum, ArrayList<Integer> path, int target, List<List<Integer>> result){
-        if (root.left == null && root.right == null) {
+        if (root.left == null && root.right == null) {// walk to the end of root
             if(sum == target) {
                 result.add(new ArrayList<Integer>(path));
             }

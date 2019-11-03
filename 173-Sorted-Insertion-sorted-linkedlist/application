@@ -5,16 +5,16 @@ public class Solution {
      */
     public ListNode insertionSortList(ListNode head) {
         // write your code here
-        if(head == null || head.next == null) {
+        if(head == null || head.next == null) {//extreme condition
             return head;
         }
         // precondition
-        ListNode dummy = new ListNode(-1);
+        ListNode dummy = new ListNode(-1);//单独创建一个新的dummy
         ListNode cur = head;
         while(cur != null) {// head循环
             ListNode can = cur;
             cur = cur.next;
-            ListNode ln = dummy;//ln归位到dummy
+            ListNode ln = dummy;//ln归位到dummy////ln一开始pointdummy 可以减少考虑extremely condition
             can.next = null;//can从原linkedlist中单独裂开
             while(true) {//dummy循环
             if(ln.next == null) {

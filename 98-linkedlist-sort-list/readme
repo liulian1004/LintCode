@@ -1,4 +1,11 @@
 https://www.lintcode.com/problem/sort-list/description?_from=ladder&&fromId=71
-merge: find mid linked-list, recursion  head , mid+1. and merge two linked list
-quick sort, find the val of mid linked-list, create 3 linked list to store left, right and mid. merge three list
-fast and slow point to find the mid linked list
+merge: find mid linked-list, split into left and right, recursion two lists and merge and sorted two linked list(with the help of a third dummy list)
+quick sort: find the val of mid linked-list, create 3 linked list for store left, right and mid.
+compare elements one by one, put the < p on the left list, =p on the mid list, >p on the right list
+once done don't forget to end with null
+recursion(sorted left and right)
+write a method to merger three sorted list together
+
+fast/slow way to find the mid of linkedlist
+fast = head.next; slow = head;
+fast = fast.next.next; slow = slow.next;

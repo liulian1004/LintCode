@@ -6,24 +6,36 @@ public class Solution {
      */
     public void sortColors2(int[] colors, int k) {
         // write your code here
+        //heap sort
+        // Queue<Integer> q = new PriorityQueue<>();
+        // for (int i:colors){
+        //     q.offer(i);
+        // }
+        // while(!q.isEmpty()){
+        //   for(int i = 0 ; i<colors.length;i++){
+        //       colors[i] = q.poll();
+        //   }
+        // }
+        // quicksort
         if (colors == null || colors.length == 0 || k == 1 ){// extreme condition
             return;
         }
         quickSortHelper(colors, 0, colors.length-1, 1, k);
+
     }
 
-    public void quickSortHelper(int[] colors, int left, int right, int colorMin, int k) {
-        if(colorMin == k){// exit condition, recurssion时只有一种颜色了，跳出
+    public void quickSortHelper(int[] colors, int left, int right, int colorMin, int colorMax) {
+        if(colorMin == colorMax){// exit condition, recurssion时只有一种颜色了，跳出
             return;
         }
         if (left>=right){// exit condition
             return;
         }
         int i = left;
-        int j = right;
-        int p = (colorMin+k)/2;
+        int j = right;// index range[left, right]
+        int p = (colorMin+colorMax)/2;// p is the middle of color range[colorMin, colorMax]
         while(i<=j){
-            while(i<=j && colors[i]<= p) {
+            while(i<=j && colors[i]<= p) {//不是所有的情况都是和模版一样 这里的p值有重复，所以要用=，要囊括到之前的区间
                 i++;
             }
             while(i<=j && colors[j]>p){
@@ -37,7 +49,8 @@ public class Solution {
                 j--;
             }
         }
+        // j<i diff by 2 max ,一般差一位
         quickSortHelper(colors,left, j, colorMin, p);
-        quickSortHelper(colors,i, right, p+1, k);
+        quickSortHelper(colors,i, right, p+1, colorMax);
     }
 }
