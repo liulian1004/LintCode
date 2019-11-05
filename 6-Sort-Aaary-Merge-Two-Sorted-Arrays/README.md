@@ -1,3 +1,3 @@
 https://www.lintcode.com/problem/merge-two-sorted-arrays/description
-i,j 双指针
-建立一个i+j长度的int[]
+int[] res = new int[A.length + B.length]
+be careful about the outbound for i,j

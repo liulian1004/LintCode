@@ -5,28 +5,19 @@ public class Solution {
      * @return: [index1, index2] (index1 < index2)
      */
     public int[] twoSum(int[] numbers, int target) {
-        // write your code here
-        // int n = numbers.length;
-        // int[] res = new int[2];
-        // for (int i =0; i<n-1; i++){
-        //     for(int j =i+1; j<n;j++){
-        //         if(numbers[i]+numbers[j] == target) {
-        //             res[0]= i;
-        //             res[1] = j;
-
-        //         }
-        //     }
-        // }
-        // return res;
-        Map<Integer,Integer> map = new HashMap<>() ; //1st Integer = val, 2nd Integer = position
-        for (int i = 0 ; i < numbers.length; i++){
-            if(map.containsKey(target - numbers[i])) {
-                int[] res = {map.get(target - numbers[i]), i};//target - numbers[i] is previous than numbers[i]
+        Map<Integer,Integer> map = new HashMap<>(); //1st Integer = val, 2nd Integer = position
+        for(int i = 0 ; i< numbers.length; i++){
+            if(map.containsKey(target-numbers[i])){
+                int[] res = {map.get(target-numbers[i])/*return position number*/,i};
                 return res;
-            } else {
-                map.put(numbers[i],i);//if not matches, put on map for later checking
+            }
+            else{
+                map.put(numbers[i],i);
             }
         }
+        //走到这里没有返回，说明没有值符合
+        //return null;
         return new int[]{};
+        //以上两个表达式都可以，具体是要看前期定义，在写程序时要定义为null时，返回null,还是new int[]{}
     }
 }

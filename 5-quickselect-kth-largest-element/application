@@ -12,7 +12,7 @@ public class Solution {
         int p = nums[left+(right-left)/2];
         int i = left;
         int j = right;
-        while (i<=j){
+        while (i<=j){// “=”是只有一个元素的情况下
             while(i<=j && nums[i]>p){
                 i++;
             }
@@ -27,12 +27,17 @@ public class Solution {
             j--;
             }
         }
+        //i和j已经要么变成ji，要么变成j i
         if(left+ n -1 <= j) {//i 和 j 之间没有间隔
+        第n到的数字排在int[] 哪里，这里第一轮left = 0；
+        这里选左边recursion
             return quickSelect(nums, left, j, n);
         }
-        if(left+n -1>=i) {
+        if(left+n -1>=i) {//n在右边
             return quickSelect(nums, i, right, n-(i-left));
         }
         return nums[j+1];//i 和 j之间隔一个数p的时候
+        //走到这里，n一定不满足以上两个if的情况，n一定只会是i和j之间的间隔数
+        //left，right在recursion情况下，不一定在int[]的左右两端
     }
 }

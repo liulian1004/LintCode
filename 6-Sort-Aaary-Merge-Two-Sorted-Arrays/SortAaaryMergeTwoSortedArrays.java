@@ -27,3 +27,32 @@ public class Solution {
 
     }
 }
+//soultion 2
+public int[] mergeSortedArray(int[] A, int[] B) {
+       // write your code
+
+       int[] res = new int[A.length + B.length];//定义res长度
+       if(A == null) {
+           //res = B;
+           return res = B;
+       }
+       if(B == null) {
+           res = A;
+           return res;
+       }
+       int i = 0;//A 指针
+       int j = 0;//B 指针
+       int k = 0;// res 指针
+       while (i< A.length || j<B.length){
+           if(i<A.length && (j>=B.length || A[i]<=B[j])){//需要考虑i，j走到边界的问题
+               res[k] = A[i];
+               i++;
+           } else{
+               res[k] = B[j];
+               j++;
+           }
+           k++;
+       }
+       return res;
+   }
+}
